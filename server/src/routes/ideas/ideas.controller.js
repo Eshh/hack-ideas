@@ -24,4 +24,8 @@ async function httpAddNewIdea(req, res) {
   return res.status(201).json(idea);
 }
 
+async function upvoteIdea(idea){
+  await saveVote(idea)
+}
+
 module.exports = { httpGetAllIdeas, httpAddNewIdea };

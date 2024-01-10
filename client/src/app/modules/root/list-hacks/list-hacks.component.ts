@@ -10,7 +10,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class ListHacksComponent implements OnInit {
   hackList: any = [];
-  currentTab: string = 'all';
+  currentTab: string|number = 'all';
   addMode: boolean = false;
 
   constructor(
@@ -34,7 +34,7 @@ export class ListHacksComponent implements OnInit {
     this.currentTab = flag;
     console.log(this.currentTab, 'machaaaa');
     if (flag == 'myHacks') {
-      this.currentTab = this.localStorage.getItem('empID');
+      this.currentTab = +this.localStorage.getItem('empID');
     }
     console.log(flag);
     setTimeout(() => {

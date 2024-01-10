@@ -9,5 +9,5 @@
 
 <!-- Add new hack popup -->
 <div *ngIf="addMode">
-    <app-add-hack (sendDataToParent)="onPopupClose()"></app-add-hack>
+    <app-add-hack [hackList]="hackList" (sendDataToParent)="onPopupClose()"></app-add-hack>
 </div>

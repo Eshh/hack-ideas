@@ -7,5 +7,6 @@ const { httpGetAllIdeas,httpAddNewIdea } = require("./ideas.controller");
 
 ideasRouter.get("/", httpGetAllIdeas);
 ideasRouter.post("/", httpAddNewIdea);
+ideasRouter.post("/upvote", httpAddNewIdea);
 
 module.exports = ideasRouter;

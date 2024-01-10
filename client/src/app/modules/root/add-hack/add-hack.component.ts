@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -16,6 +16,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class AddHackComponent implements OnInit {
   @Output() sendDataToParent = new EventEmitter();
+  @Input() hackList: any = [];
   hackDetails = new FormGroup({
     title: new FormControl(),
     description: new FormControl(),
@@ -57,6 +58,7 @@ export class AddHackComponent implements OnInit {
         createdBy: this.localStorage.getItem('empID'),
         createdAt: new Date().getTime(),
         upvotes: [],
+        hackId: this.hackList.length + 1,
       };
       console.log(body);
       // return;
