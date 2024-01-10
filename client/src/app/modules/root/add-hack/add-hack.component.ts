@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AppConfig } from 'src/app.config';
+import { DataManagerService } from 'src/app/services/dataManager.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-add-hack',
@@ -12,20 +15,27 @@ import {
   styleUrls: ['./add-hack.component.css'],
 })
 export class AddHackComponent implements OnInit {
+  @Output() sendDataToParent = new EventEmitter();
   hackDetails = new FormGroup({
     title: new FormControl(),
     description: new FormControl(),
-    tags: new FormControl(),
+    tags: new FormControl(''),
   });
 
   tagOptions: any = [
+    { name: 'Select', value: '' },
     { name: 'AI/ML', value: 'ai' },
+    { name: 'Security', value: 'security' },
     { name: 'BigData', value: 'bigdata' },
     { name: 'Cloud', value: 'cloud' },
     { name: 'Programming', value: 'progamming' },
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private dataManager: DataManagerService,
+    private localStorage: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.hackDetails = this.formBuilder.group({
@@ -35,7 +45,25 @@ export class AddHackComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onAdd() {
     console.log(this.hackDetails.valid);
+    if (this.hackDetails.valid) {
+      let url = AppConfig.API_BASE_URL;
+      let f = this.hackDetails.controls;
+      let body = {
+        title: f.title.value,
+        description: f.description.value,
+        tags: f.tags.value,
+        createdBy: this.localStorage.getItem('empID'),
+        createdAt: new Date().getTime(),
+        upvotes: [],
+      };
+      console.log(body);
+      // return;
+      this.dataManager.APIGenericPostMethod(url, body).subscribe((data) => {
+        console.log(data);
+        this.sendDataToParent.emit('close');
+      });
+    }
   }
 }

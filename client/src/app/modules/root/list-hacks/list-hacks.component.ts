@@ -32,4 +32,8 @@ export class ListHacksComponent implements OnInit {
   }
 
   addNewHack() {}
+
+  onPopupClose() {
+    this.getAllHacks('');
+  }
 }

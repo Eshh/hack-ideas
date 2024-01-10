@@ -21,8 +21,8 @@ export class DataManagerService {
     );
   }
 
-  APIGenericPostMethod(entity: string, entityObject: {}, prefix: string) {
-    let url = prefix + entity;
+  APIGenericPostMethod(entity: string, entityObject: {}) {
+    let url = entity;
     return this.httpClient.post(url, entityObject).pipe(
       map((response: any) => {
         var data = response;

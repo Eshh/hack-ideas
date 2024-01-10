@@ -5,6 +5,8 @@
     <input id="description" formControlName="description" />
     <label for="tags">Tags</label>
     <select id="tags" formControlName="tags">
-        <option *ngFor="let option of tagOptions">{{option.name}}</option>
+        <!-- <option [selected]="true" [disabled]="true" [value]="">Select</option> -->
+        <option *ngFor="let option of tagOptions" [ngValue]="option.value">{{option.name}}</option>
     </select>
+    <button (click)="onAdd()">Add</button>
 </form>
