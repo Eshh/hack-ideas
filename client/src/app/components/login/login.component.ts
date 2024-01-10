@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
     if (!this.empID || String(this.empID).length < 3) {
       alert('ID should be minimum 3 characters');
     } else {
-      // this.localStorage.setItem('isLoggedIn', true);
+      this.localStorage.setItem('isLoggedIn', true);
+      this.localStorage.setItem('empID', this.empID);
+      this.router.navigate([`list/hacks/all`]);
     }
   }
 }

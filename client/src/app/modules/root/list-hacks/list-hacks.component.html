@@ -1,3 +1,13 @@
+<div>
+    <span (click)="switchTab('allHacks')">All Hacks</span>
+    <span (click)="switchTab('myHacks')">My Hacks</span>
+    <button (click)="addMode = !addMode">Add New Hack</button>
+</div>
 <div *ngFor="let hack of hackList">
     <span>{{hack.title}}</span>
+</div>
+
+<!-- Add new hack popup -->
+<div *ngIf="addMode">
+    <app-add-hack></app-add-hack>
 </div>

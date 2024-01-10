@@ -8,18 +8,28 @@ import { DataManagerService } from 'src/app/services/dataManager.service';
   styleUrls: ['./list-hacks.component.css'],
 })
 export class ListHacksComponent implements OnInit {
-  hackList:any=[]
+  hackList: any = [];
+  currentTab: string = 'allHacks';
+  addMode: boolean = false;
+
   constructor(private dataManagerService: DataManagerService) {}
 
   ngOnInit(): void {
-    this.getAllHacks();
+    this.getAllHacks(this.currentTab);
   }
 
-  getAllHacks() {
+  getAllHacks(param: string) {
     let url = AppConfig.API_BASE_URL;
     this.dataManagerService.APIGenericGetMethod(url).subscribe((data) => {
       console.log(data);
-      this.hackList = data
+      this.hackList = data;
     });
   }
+
+  switchTab(flag: string) {
+    this.currentTab = flag;
+    this.getAllHacks(flag);
+  }
+
+  addNewHack() {}
 }

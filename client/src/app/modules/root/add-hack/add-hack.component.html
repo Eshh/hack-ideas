@@ -1,1 +1,10 @@
-<p>add-hack works!</p>
+<form [formGroup]="hackDetails" #hackForm="ngForm">
+    <label for="title">Title</label>
+    <input id="title" formControlName="title" />
+    <label for="description">Description</label>
+    <input id="description" formControlName="description" />
+    <label for="tags">Tags</label>
+    <select id="tags" formControlName="tags">
+        <option *ngFor="let option of tagOptions">{{option.name}}</option>
+    </select>
+</form>
