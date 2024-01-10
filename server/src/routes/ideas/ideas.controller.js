@@ -3,7 +3,8 @@ const { getPagination } = require("../../services/query");
 
 async function httpGetAllIdeas(req, res) {
   const { skip, limit } = getPagination(req.query);
-  return res.status(200).json(await getAllIdeas(skip, limit));
+  console.log(req.query,'Queryyy');
+  return res.status(200).json(await getAllIdeas(skip, limit, req.query.empID));
 }
 
 async function httpAddNewIdea(req, res) {
@@ -16,9 +17,7 @@ async function httpAddNewIdea(req, res) {
     !idea.createdBy ||
     !idea.upvotes
   ) {
-    return res
-      .status(400)
-      .json({ error: "Missing required properties" });
+    return res.status(400).json({ error: "Missing required properties" });
   }
 
   await addNewIdea(idea);

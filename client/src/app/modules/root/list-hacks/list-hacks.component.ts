@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConfig } from 'src/app.config';
 import { DataManagerService } from 'src/app/services/dataManager.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-list-hacks',
@@ -9,17 +10,20 @@ import { DataManagerService } from 'src/app/services/dataManager.service';
 })
 export class ListHacksComponent implements OnInit {
   hackList: any = [];
-  currentTab: string = 'allHacks';
+  currentTab: string = 'all';
   addMode: boolean = false;
 
-  constructor(private dataManagerService: DataManagerService) {}
+  constructor(
+    private dataManagerService: DataManagerService,
+    private localStorage: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
-    this.getAllHacks(this.currentTab);
+    this.getAllHacks();
   }
 
-  getAllHacks(param: string) {
-    let url = AppConfig.API_BASE_URL;
+  getAllHacks() {
+    let url = AppConfig.API_BASE_URL + `?empID=${this.currentTab}`;
     this.dataManagerService.APIGenericGetMethod(url).subscribe((data) => {
       console.log(data);
       this.hackList = data;
@@ -28,12 +32,19 @@ export class ListHacksComponent implements OnInit {
 
   switchTab(flag: string) {
     this.currentTab = flag;
-    this.getAllHacks(flag);
+    console.log(this.currentTab, 'machaaaa');
+    if (flag == 'myHacks') {
+      this.currentTab = this.localStorage.getItem('empID');
+    }
+    console.log(flag);
+    setTimeout(() => {
+      this.getAllHacks();
+    }, 100);
   }
 
   addNewHack() {}
 
   onPopupClose() {
-    this.getAllHacks('');
+    this.getAllHacks();
   }
 }
