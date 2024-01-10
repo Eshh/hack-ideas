@@ -18,7 +18,7 @@ async function httpAddNewIdea(req, res) {
   ) {
     return res
       .status(400)
-      .json({ error: "Missing required Launch properties" });
+      .json({ error: "Missing required properties" });
   }
 
   await addNewIdea(idea);
