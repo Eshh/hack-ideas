@@ -13,7 +13,7 @@ const server = http.createServer(app);
 // server spin
 async function startServer() {
   await connectToMongo();
-  server.listen(PORT, () => console.log(`Node server listening on ${PORT}`));
+  server.listen(8000, () => console.log(`Node server listening on ${PORT}`));
 }
 
 startServer();

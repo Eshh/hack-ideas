@@ -5,7 +5,7 @@ require("dotenv").config();
 const MONGO_URL = process.env.MONGO_URL;
 
 mongoose.connection.once("open", () => console.log("Mongoose connected"));
-mongoose.connection.on("error", (e) => console.error("Connecttion error", e));
+mongoose.connection.on("error", (e) => console.error("Connection error", e));
 
 async function connectToMongo() {
   await mongoose.connect(MONGO_URL);
