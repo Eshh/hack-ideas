@@ -8,13 +8,12 @@ const api = require("./routes/api-v1");
 const app = express();
 
 // cors bypasser
-app.use(cors({ origin: "http://localhost:3000" }));
-
+app.use(cors());
 // middleware to convert requests data to json before passing to route handlers
 app.use(express.json());
 
 // static site middleware
-app.use(express.static(path.join(__dirname, "..", "public")));
+// app.use(express.static(path.join(__dirname, "..", "public")));
 
 // end point handlers
 app.use("/v1", api);
@@ -22,6 +21,5 @@ app.use("/v1", api);
 // app.get("/*", (req, res) =>
 //   res.sendFile(path.join(__dirname, "..", "public", "index.html"))
 // );
-
 
 module.exports = app;
