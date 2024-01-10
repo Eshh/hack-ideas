@@ -1,4 +1,4 @@
-const { getAllIdeas, addNewIdea } = require("../../models/ideas.model");
+const { getAllIdeas, addNewIdea, saveVote } = require("../../models/ideas.model");
 const { getPagination } = require("../../services/query");
 
 async function httpGetAllIdeas(req, res) {
@@ -24,8 +24,10 @@ async function httpAddNewIdea(req, res) {
   return res.status(201).json(idea);
 }
 
-async function upvoteIdea(idea){
-  await saveVote(idea)
+async function httpUpdateIdea(req,res){
+  await saveVote(req.body)
+  return res.status(201).json(req.body);
+
 }
 
-module.exports = { httpGetAllIdeas, httpAddNewIdea };
+module.exports = { httpGetAllIdeas, httpAddNewIdea, httpUpdateIdea };

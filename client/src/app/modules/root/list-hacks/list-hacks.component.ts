@@ -10,7 +10,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class ListHacksComponent implements OnInit {
   hackList: any = [];
-  currentTab: string|number = 'all';
+  currentTab: string | number = 'all';
   addMode: boolean = false;
 
   constructor(
@@ -46,5 +46,14 @@ export class ListHacksComponent implements OnInit {
 
   onPopupClose() {
     this.getAllHacks();
+  }
+
+  upvote(hack: any) {
+    let body: any = hack;
+    body['upvotes'].push(this.localStorage.getItem('empID'));
+    let url = AppConfig.API_BASE_URL + '/upvote';
+    this.dataManagerService
+      .APIGenericPostMethod(url, body)
+      .subscribe((data) => console.log(data));
   }
 }

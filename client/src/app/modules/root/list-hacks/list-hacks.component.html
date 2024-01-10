@@ -5,6 +5,8 @@
 </div>
 <div *ngFor="let hack of hackList">
     <span>{{hack.title}}</span>
+    <span>{{hack.upvotes.length}}</span>
+    <button (click)="upvote(hack)">Upvote</button>
 </div>
 
 <!-- Add new hack popup -->

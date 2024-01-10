@@ -18,10 +18,10 @@ async function getAllIdeas(skip, limit, id = "") {
 }
 
 async function addNewIdea(idea) {
-  idea["hackId"] = idea.hackId || INITIAL_HACK_ID;
+    idea["hackId"] = idea.hackId || INITIAL_HACK_ID;
   await ideasModel.findOneAndUpdate(
     {
-      hackId: idea.hackId,
+      hackId: idea.hackId + 1,
     },
     idea,
     { upsert: true }
@@ -29,14 +29,14 @@ async function addNewIdea(idea) {
 }
 
 async function saveVote(idea) {
-  await ideasModel.findOneAndUpdate(
+    await ideasModel.findOneAndUpdate(
     {
-      flightNumber: launch.flightNumber,
+      hackId: idea.hackId,
     },
-    launch,
+    idea,
     { upsert: true }
   );
+
 }
 
-async function getLatestId() {}
-module.exports = { getAllIdeas, addNewIdea };
+module.exports = { saveVote, addNewIdea, getAllIdeas };
