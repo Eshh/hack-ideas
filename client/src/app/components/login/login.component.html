@@ -1,4 +1,12 @@
 <div>
-    <input [(ngModel)]="empID"/>
-    <button (click)="login()">Login</button>
+    <section class="header">
+        <h1>Hack Ideas</h1>
+        <p>One stop portal for everything about Hackathons</p>
+    </section>
+    <div class="login-container container form-control">
+
+        <label for="empID">Enter your Employee ID</label>
+        <input id="empID" [(ngModel)]="empID" />
+        <button (click)="login()">Login</button>
+    </div>
 </div>

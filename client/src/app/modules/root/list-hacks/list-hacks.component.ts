@@ -13,7 +13,9 @@ export class ListHacksComponent implements OnInit {
   filteredHackList: any = [];
   currentTab: string | number = 'all';
   filterMode: string = 'all';
+  searchValue: string = '';
   addMode: boolean = false;
+  showIdleSvg: boolean = false;
 
   constructor(
     private dataManagerService: DataManagerService,
@@ -32,6 +34,11 @@ export class ListHacksComponent implements OnInit {
       console.log(data);
       this.hackList = data;
       this.filteredHackList = data;
+      if (data.length == 0) {
+        this.showIdleSvg = true;
+      } else {
+        this.showIdleSvg = false;
+      }
     });
   }
 
@@ -42,13 +49,15 @@ export class ListHacksComponent implements OnInit {
       this.currentTab = +this.localStorage.getItem('empID');
     }
     console.log(flag);
-    setTimeout(() => {
       this.getAllHacks();
-    }, 100);
   }
 
-  sortList() {
-    if (this.filterMode == 'createdDate') {
+  sortList(flag: string = '') {
+    if (flag == 'search' && this.searchValue.length > 2) {
+      this.filteredHackList = this.hackList.filter((e: any) => {
+        return +e.createdBy == +this.searchValue;
+      });
+    } else if (this.filterMode == 'createdDate') {
       this.filteredHackList = this.hackList.sort(
         (a: any, b: any) => b.createdBy - a.createdBy
       );

@@ -6,7 +6,7 @@
     <label for="tags">Tags</label>
     <select id="tags" formControlName="tags">
         <!-- <option [selected]="true" [disabled]="true" [value]="">Select</option> -->
-        <option *ngFor="let option of tagOptions" [ngValue]="option.value">{{option.name}}</option>
+        <option *ngFor="let option of tagOptions" [ngValue]="option.name">{{option.name}}</option>
     </select>
     <button (click)="onAdd()">Add</button>
 </form>
