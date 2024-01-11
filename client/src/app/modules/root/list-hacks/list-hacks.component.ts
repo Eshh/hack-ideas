@@ -10,7 +10,9 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class ListHacksComponent implements OnInit {
   hackList: any = [];
+  filteredHackList: any = [];
   currentTab: string | number = 'all';
+  filterMode: string = 'all';
   addMode: boolean = false;
 
   constructor(
@@ -19,7 +21,9 @@ export class ListHacksComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllHacks();
+    setTimeout(() => {
+      this.getAllHacks();
+    }, 500);
   }
 
   getAllHacks() {
@@ -27,6 +31,7 @@ export class ListHacksComponent implements OnInit {
     this.dataManagerService.APIGenericGetMethod(url).subscribe((data) => {
       console.log(data);
       this.hackList = data;
+      this.filteredHackList = data;
     });
   }
 
@@ -42,18 +47,36 @@ export class ListHacksComponent implements OnInit {
     }, 100);
   }
 
-  addNewHack() {}
+  sortList() {
+    if (this.filterMode == 'createdDate') {
+      this.filteredHackList = this.hackList.sort(
+        (a: any, b: any) => b.createdBy - a.createdBy
+      );
+    } else {
+      this.filteredHackList = this.hackList.sort(
+        (a: any, b: any) => b.upvotes.length - a.upvotes.length
+      );
+    }
+  }
 
-  onPopupClose() {
-    this.getAllHacks();
+  onPopupClose(dataFromChild: any) {
+    this.addMode = false;
+    if (dataFromChild == 'close') {
+      this.getAllHacks();
+    }
   }
 
   upvote(hack: any) {
     let body: any = hack;
-    body['upvotes'].push(this.localStorage.getItem('empID'));
-    let url = AppConfig.API_BASE_URL + '/upvote';
-    this.dataManagerService
-      .APIGenericPostMethod(url, body)
-      .subscribe((data) => console.log(data));
+    console.log(body);
+    if (body.upvotes.includes(this.localStorage.getItem('empID'))) {
+      alert('Uh oh! can only upvote once');
+    } else {
+      body['upvotes'].push(this.localStorage.getItem('empID'));
+      let url = AppConfig.API_BASE_URL + '/upvote';
+      this.dataManagerService
+        .APIGenericPostMethod(url, body)
+        .subscribe((data) => console.log(data));
+    }
   }
 }
