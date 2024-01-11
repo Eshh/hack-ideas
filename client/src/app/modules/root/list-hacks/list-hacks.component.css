@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  /* height: 100vh; */
   background-color: #dfdbe5;
   /* background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E"); */
 }
@@ -29,7 +29,6 @@
   border-bottom: 2px solid #664c90 !important;
 }
 
-
 button {
   appearance: none;
   cursor: pointer;
@@ -49,136 +48,189 @@ button {
   }
 }
 
-input{
- border: none;
- border-bottom: 1px solid #664c90;
- background-color: #dfdbe5;
- padding: 10px;
- margin-right: 10px;
+input {
+  border: none;
+  border-bottom: 1px solid #664c90;
+  background-color: #dfdbe5;
+  padding: 10px;
+  margin-right: 10px;
 }
-input::placeholder{
-
-    font-family: "Arial";
+input::placeholder {
+  font-family: "Arial";
 }
 
-select {
+span,
+p {
+  color: white !important;
+}
 
-    /* styling */
-    background-color: white;
-    /* border: thin solid blue; */
-    border-radius: 4px;
-    display: inline-block;
-    font: inherit;
-    line-height: 1.5em;
-    padding: 0.5em 3.5em 0.5em 1em;
-    margin-right: 10px;
-  }
+.description {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
 
-  span,p{
-    color:white !important;
-  }
-
-  .description{
-    font-size: 2rem;
-    margin-bottom: 5px;
-  }
-
-  .ag-courses_item {
-    margin: 0 15px 30px;
-    overflow: hidden;
-    border-radius: 28px;
-  }
-  .ag-courses-item_link {
-    display: block;
-    padding: 30px 20px;
-    background-color: #664c90;
-    overflow: hidden;
-    position: relative;
-  }
-  .ag-courses-item_link:hover,
-  .ag-courses-item_link:hover .ag-courses-item_date {
-    text-decoration: none;
-    color: #FFF;
-  }
-  .ag-courses-item_link:hover .ag-courses-item_bg {
-    /* -webkit-transform: scale(10);
+.ag-courses_item {
+  margin: 0 15px 30px;
+  overflow: hidden;
+  border-radius: 28px;
+}
+.ag-courses-item_link {
+  display: block;
+  padding: 30px 20px;
+  background-color: #664c90;
+  overflow: hidden;
+  position: relative;
+}
+.ag-courses-item_link:hover,
+.ag-courses-item_link:hover .ag-courses-item_date {
+  text-decoration: none;
+  color: #fff;
+}
+.ag-courses-item_link:hover .ag-courses-item_bg {
+  /* -webkit-transform: scale(10);
     -ms-transform: scale(10);
     transform: scale(10); */
-  }
+}
 
-  .ag-courses-item_date-box{
-    text-align: right;
-    font-size: 20px;
+.ag-courses-item_date-box {
+  text-align: right;
+  font-size: 20px;
+}
+.ag-courses-item_title {
+  min-height: 87px;
+  /* margin: 0 0 25px; */
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 30px;
+  color: #fff;
+  z-index: 2;
+  position: relative;
+}
+
+.ag-courses-item_bg {
+  height: 128px;
+  width: 128px;
+  background-color: #f9b234;
+  z-index: 1;
+  position: absolute;
+  top: -75px;
+  right: -75px;
+  border-radius: 20%;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.upvotes-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  margin-top: 20px;
+  position: relative;
+  top: 50px;
+}
+
+@media only screen and (max-width: 979px) {
+  .ag-courses_item {
+    -ms-flex-preferred-size: calc(50% - 30px);
+    flex-basis: calc(50% - 30px);
   }
   .ag-courses-item_title {
-    min-height: 87px;
-    /* margin: 0 0 25px; */
-    overflow: hidden;
-    font-weight: bold;
-    font-size: 30px;
-    color: #FFF;
-    z-index: 2;
-    position: relative;
+    font-size: 24px;
   }
+}
 
-  .ag-courses-item_bg {
-    height: 128px;
-    width: 128px;
-    background-color: #f9b234;
-    z-index: 1;
-    position: absolute;
-    top: -75px;
-    right: -75px;
-    border-radius: 20%;
-    -webkit-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
+@media only screen and (max-width: 767px) {
+  .ag-format-container {
+    width: 96%;
   }
-
-  .upvotes-container{
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-    align-items:flex-start;
-    margin-top: 20px;
-    position: relative;
-    top: 50px;
+}
+@media only screen and (max-width: 639px) {
+  .ag-courses_item {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
   }
+  .ag-courses-item_title {
+    min-height: 72px;
+    line-height: 1;
 
-
-
-
-  @media only screen and (max-width: 979px) {
-    .ag-courses_item {
-      -ms-flex-preferred-size: calc(50% - 30px);
-      flex-basis: calc(50% - 30px);
-    }
-    .ag-courses-item_title {
-      font-size: 24px;
-    }
+    font-size: 24px;
   }
-
-  @media only screen and (max-width: 767px) {
-    .ag-format-container {
-      width: 96%;
-    }
-
+  .ag-courses-item_link {
+    padding: 22px 40px;
   }
-  @media only screen and (max-width: 639px) {
-    .ag-courses_item {
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-    }
-    .ag-courses-item_title {
-      min-height: 72px;
-      line-height: 1;
-
-      font-size: 24px;
-    }
-    .ag-courses-item_link {
-      padding: 22px 40px;
-    }
-    .ag-courses-item_date-box {
-      font-size: 16px;
-    }
+  .ag-courses-item_date-box {
+    font-size: 16px;
   }
+}
+
+.idleSvg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 74vh;
+}
+.idleSvg p {
+  color: black !important;
+}
+
+/* popup */
+
+
+.modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(#000, 0.25);
+}
+
+.modal-container {
+	max-height: 90vh;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff;
+	border-radius: 16px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 15px 30px 0 rgba(#000, 0.25);
+	@media (max-width: 600px) {
+		width: 90%;
+	}
+}
+
+.modal-container-header {
+	padding: 16px 32px;
+	border-bottom: 1px solid #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.modal-container-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	line-height: 1;
+	font-weight: 700;
+	font-size: 1.125;
+	svg {
+		width: 32px;
+		height: 32px;
+		color: #750550;
+	}
+}
+
+.modal-container-body {
+	padding: 24px 32px 51px;
+	overflow-y: auto;
+}
+
+

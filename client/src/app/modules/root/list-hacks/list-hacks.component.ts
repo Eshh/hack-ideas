@@ -59,7 +59,7 @@ export class ListHacksComponent implements OnInit {
       });
     } else if (this.filterMode == 'createdDate') {
       this.filteredHackList = this.hackList.sort(
-        (a: any, b: any) => b.createdBy - a.createdBy
+        (a: any, b: any) => b.createdAt - a.createdAt
       );
     } else {
       this.filteredHackList = this.hackList.sort(

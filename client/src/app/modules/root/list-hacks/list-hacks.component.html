@@ -21,18 +21,22 @@
 
     <div *ngFor="let hack of filteredHackList">
         <div class="hack-card">
-                <div class="ag-courses_item">
-                    <a class="ag-courses-item_link">
-                        <div class="ag-courses-item_bg"></div>
+            <div class="ag-courses_item">
+                <a class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
 
-                        <div class="ag-courses-item_title">
-                            {{hack.title}} </div>
-                            <p class="description">{{hack.description}}</p>
-                            <div class="upvotes-container">
+                    <div class="ag-courses-item_title">
+                        {{hack.title}} </div>
+                    <p class="description">{{hack.description}}</p>
+                    <div class="upvotes-container">
 
-                                <svg title="Upvote" (click)="upvote(hack)" fill="#fff" width="60px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z"/></svg>
-                                <p>{{hack.upvotes.length}} upvotes</p>
-                            </div>
+                        <svg title="Upvote" (click)="upvote(hack)" fill="#fff" width="60px" height="60px"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z" />
+                        </svg>
+                        <p>{{hack.upvotes.length}} upvotes</p>
+                    </div>
                     <!-- <button>Upvote</button> -->
 
                     <div class="ag-courses-item_date-box">
@@ -46,8 +50,9 @@
 
         </div>
     </div>
-    <div *ngIf="showIdleSvg">
+    <div *ngIf="showIdleSvg" class="idleSvg">
         <p>Zero Ideas ! Lets cook something :)</p>
+        <button (click)="addMode = !addMode">Add New Hack</button>
         <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
             style="width: 308px; height: 308px;">
             <style>
@@ -202,6 +207,22 @@
 </div>
 
 <!-- Add new hack popup -->
-<div *ngIf="addMode">
-    <app-add-hack [hackList]="hackList" (sendDataToParent)="onPopupClose($event)"></app-add-hack>
+
+<div class="modal" *ngIf="addMode">
+    <article class="modal-container">
+        <header class="modal-container-header">
+            <h1 class="modal-container-title">
+                Terms and Services
+            </h1>
+            <button (click)="addMode = !addMode" class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path fill="currentColor"
+                        d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                </svg>
+            </button>
+        </header>
+
+        <app-add-hack [hackList]="hackList" (sendDataToParent)="onPopupClose($event)"></app-add-hack>
+    </article>
 </div>
