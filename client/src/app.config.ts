@@ -4,5 +4,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AppConfig {
-  public static API_BASE_URL = 'http://13.127.103.115:8000/v1/ideas';
+  public static API_BASE_URL = 'https://hack-ideas-server.onrender.com/v1/ideas';
 }

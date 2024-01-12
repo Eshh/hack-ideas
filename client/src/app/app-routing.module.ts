@@ -13,6 +13,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/root/root.module').then((m) => m.RootModule),
   },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
