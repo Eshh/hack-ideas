@@ -2,7 +2,7 @@
 
 
 
-    <div class="top-strip">
+    <div class="top-strip main_header">
         <span [ngClass]="[currentTab=='all'?'b-bottom':'']" (click)="switchTab('all')">All Hacks</span>
         <span [ngClass]="[currentTab!='all'?'b-bottom':'']" (click)="switchTab('myHacks')">My Hacks</span>
         <button (click)="addMode = !addMode">Add New Hack</button>
@@ -18,9 +18,10 @@
         </div>
         <button (click)="getAllHacks();filterMode='all';searchValue=''">Reset</button>
     </div>
+    <div class="cards_block">
 
-    <div *ngFor="let hack of filteredHackList">
-        <div class="hack-card">
+        <div *ngFor="let hack of filteredHackList" class="hack-card">
+            <!-- <div > -->
             <div class="ag-courses_item">
                 <a class="ag-courses-item_link">
                     <div class="ag-courses-item_bg"></div>
@@ -29,25 +30,27 @@
                         {{hack.title}} </div>
                     <p class="description">{{hack.description}}</p>
                     <div class="upvotes-container">
-
-                        <svg title="Upvote" (click)="upvote(hack)" fill="#fff" width="60px" height="60px"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z" />
-                        </svg>
-                        <p>{{hack.upvotes.length}} upvotes</p>
+                        <div>
+                            <svg title="Upvote" (click)="upvote(hack)" fill="#fff" width="60px" height="60px"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z" />
+                            </svg>
+                            <p>{{hack.upvotes.length}} upvotes</p>
+                        </div>
+                        <div class="ag-courses-item_date-box">
+                            <p>Tagged as:{{hack.tags[0]}}</p>
+                            <span class="ag-courses-item_date">
+                                created on:{{hack.createdAt | date}}
+                            </span>
+                        </div>
                     </div>
                     <!-- <button>Upvote</button> -->
 
-                    <div class="ag-courses-item_date-box">
-                        <p>Tagged as:{{hack.tags[0]}}</p>
-                        <span class="ag-courses-item_date">
-                            created on:{{hack.createdAt | date}}
-                        </span>
-                    </div>
+
                 </a>
             </div>
-
+            <!-- </div> -->
         </div>
     </div>
     <div *ngIf="showIdleSvg" class="idleSvg">
@@ -214,7 +217,7 @@
             <h1 class="modal-container-title">
                 Terms and Services
             </h1>
-            <button (click)="addMode = !addMode" class="icon-button">
+            <button (click)="addMode = !addMode" class="icon-button close_pop">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path fill="currentColor"

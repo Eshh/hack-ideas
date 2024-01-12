@@ -1,14 +1,15 @@
-input, textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+input,
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
-  /* input[type=submit] {
+/* input[type=submit] {
     width: 100%;
     background-color: #4CAF50;
     color: white;
@@ -23,3 +24,22 @@ input, textarea {
     background-color: #45a049;
   } */
 
+.terms_services_pop_form {
+  padding: 1.5rem;
+}
+.add_btn {
+  display: block;
+  border-radius: 4px;
+  width: 200px;
+  margin: 20px auto;
+  background-color: rgb(79, 206, 134);
+  color: white;
+  font-size: 0.9rem;
+  border: transparent;
+}
+
+.add_btn:hover {
+  background-color: seagreen;
+  color: white;
+  font-size: 0.9rem;
+}

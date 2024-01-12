@@ -1,12 +1,12 @@
-<form [formGroup]="hackDetails" #hackForm="ngForm">
+<form [formGroup]="hackDetails" #hackForm="ngForm" class="terms_services_pop_form">
     <label for="title">Title</label>
     <input id="title" formControlName="title" />
     <label for="description">Description</label>
     <textarea id="description" formControlName="description"></textarea>
-    <label for="tags">Tags</label>
+    <label for="tags">Tags </label>
     <select id="tags" formControlName="tags">
         <!-- <option [selected]="true" [disabled]="true" [value]="">Select</option> -->
         <option *ngFor="let option of tagOptions" [ngValue]="option.name">{{option.name}}</option>
     </select>
-    <button (click)="onAdd()">Add</button>
+    <button (click)="onAdd()" class="add_btn">Add</button>
 </form>
