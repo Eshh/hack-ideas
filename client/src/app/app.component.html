@@ -1,7 +1,5 @@
 <router-outlet></router-outlet>
 
-<div class="toast_msg_block">
-
-    <img src="" alt="">
-    <span>THIS IS SIMPLE TOAST!!!</span>
+<div *ngIf="toastData.status" class="toast_msg_block" [ngStyle]="{background:toastData.color}">
+    <span>{{toastData.message}}</span>
 </div>

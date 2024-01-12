@@ -1,9 +1,9 @@
 .toast_msg_block {
-  position: absolute;
+  position: fixed;
   top: 100px;
-  right: 50%;
+  right: 15%;
   transition: all 0.4s ease-in-out;
-  background: #e9465e;
+  /* background: #e9465e; */
   color: white;
   padding: 18px 45px;
   border-radius: 5px;

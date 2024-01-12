@@ -3,9 +3,9 @@
 
 
     <div class="top-strip main_header">
-        <span [ngClass]="[currentTab=='all'?'b-bottom':'']" (click)="switchTab('all')">All Hacks</span>
-        <span [ngClass]="[currentTab!='all'?'b-bottom':'']" (click)="switchTab('myHacks')">My Hacks</span>
-        <button (click)="addMode = !addMode">Add New Hack</button>
+        <span [ngClass]="[currentTab=='all'?'b-bottom':'']" (click)="switchTab('all')">All Ideas</span>
+        <span [ngClass]="[currentTab!='all'?'b-bottom':'']" (click)="switchTab('myHacks')">My Ideas</span>
+        <button (click)="addMode = !addMode">Add New Idea</button>
     </div>
     <div class="filter-container">
         <select (change)="sortList()" [(ngModel)]="filterMode">

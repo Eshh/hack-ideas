@@ -8,6 +8,7 @@ import {
 import { AppConfig } from 'src/app.config';
 import { DataManagerService } from 'src/app/services/dataManager.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ToastMessageService } from 'src/app/services/toast-message.service';
 
 @Component({
   selector: 'app-add-hack',
@@ -35,7 +36,8 @@ export class AddHackComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataManager: DataManagerService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private toastService: ToastMessageService
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +67,12 @@ export class AddHackComponent implements OnInit {
       this.dataManager.APIGenericPostMethod(url, body).subscribe((data) => {
         console.log(data);
         this.sendDataToParent.emit('close');
+      });
+    } else {
+      this.toastService.setToastMsgFunction({
+        status: true,
+        message: 'Please fill all mandatory fields',
+        color: '#e9465e',
       });
     }
   }

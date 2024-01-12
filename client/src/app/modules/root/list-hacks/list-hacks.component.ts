@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppConfig } from 'src/app.config';
 import { DataManagerService } from 'src/app/services/dataManager.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ToastMessageService } from 'src/app/services/toast-message.service';
 
 @Component({
   selector: 'app-list-hacks',
@@ -19,7 +20,8 @@ export class ListHacksComponent implements OnInit {
 
   constructor(
     private dataManagerService: DataManagerService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private toastService:ToastMessageService
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +59,13 @@ export class ListHacksComponent implements OnInit {
       this.filteredHackList = this.hackList.filter((e: any) => {
         return +e.createdBy == +this.searchValue;
       });
+      if(this.filteredHackList.length == 0){
+        this.toastService.setToastMsgFunction({
+          status: true,
+          message: `No ideas created by employee with ID:${this.searchValue}`,
+          color: '#e9465e',
+        });
+      }
     } else if (this.filterMode == 'createdDate') {
       this.filteredHackList = this.hackList.sort(
         (a: any, b: any) => b.createdAt - a.createdAt
@@ -79,7 +88,12 @@ export class ListHacksComponent implements OnInit {
     let body: any = hack;
     console.log(body);
     if (body.upvotes.includes(this.localStorage.getItem('empID'))) {
-      alert('Uh oh! can only upvote once');
+      // alert('Uh oh! can only upvote once');
+      this.toastService.setToastMsgFunction({
+        status: true,
+        message: 'Uh oh! can only upvote once',
+        color: '#e9465e',
+      });
     } else {
       body['upvotes'].push(this.localStorage.getItem('empID'));
       let url = AppConfig.API_BASE_URL + '/upvote';
