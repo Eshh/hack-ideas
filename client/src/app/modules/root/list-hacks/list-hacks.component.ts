@@ -103,7 +103,7 @@ export class ListHacksComponent implements OnInit {
         message: 'Uh oh ! You have already upvoted this !',
         color: '#e9465e',
       });
-      this.spinnerService.showSpinnerMethod();
+      this.spinnerService.hideSpinner();
     } else {
       body['upvotes'].push(this.localStorage.getItem('empID'));
       let url = AppConfig.API_BASE_URL + '/upvote';
