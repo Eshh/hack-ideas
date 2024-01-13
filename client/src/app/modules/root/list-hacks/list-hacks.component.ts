@@ -100,9 +100,10 @@ export class ListHacksComponent implements OnInit {
       // alert('Uh oh! can only upvote once');
       this.toastService.setToastMsgFunction({
         status: true,
-        message: 'Uh oh! can only upvote once',
+        message: 'Uh oh ! You have already upvoted this !',
         color: '#e9465e',
       });
+      this.spinnerService.showSpinnerMethod();
     } else {
       body['upvotes'].push(this.localStorage.getItem('empID'));
       let url = AppConfig.API_BASE_URL + '/upvote';
