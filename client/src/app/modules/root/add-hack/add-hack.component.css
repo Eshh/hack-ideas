@@ -40,7 +40,7 @@ textarea {
   border-radius: 4px;
   width: 200px;
   margin: 20px auto;
-  background-color: rgb(79, 206, 134);
+  background-color:#664c90;
   color: white;
   font-size: 0.9rem;
   border: transparent;
@@ -48,6 +48,6 @@ textarea {
 
 .add_btn:hover {
   background-color: seagreen;
-  color: white;
+  color: #7f5fb4;
   font-size: 0.9rem;
 }
