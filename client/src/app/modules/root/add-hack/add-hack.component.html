@@ -1,7 +1,7 @@
 <form [formGroup]="hackDetails" #hackForm="ngForm" class="terms_services_pop_form">
     <label for="title">Title</label>
     <span class="text-length-msg" *ngIf="hackDetails.controls.title.value.length < 3 || hackDetails.controls.title.value.length > 20">*between
-        3-30 characters</span>
+        3-50 characters</span>
     <input [ngStyle]="{'border-color':(isSubmitted && !hackDetails.controls.title.valid ) ? 'red' : ''}" id="title"
         formControlName="title" />
     <label for="description">Description</label>

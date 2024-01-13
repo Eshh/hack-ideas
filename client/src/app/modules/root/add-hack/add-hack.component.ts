@@ -52,7 +52,7 @@ export class AddHackComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(30),
+          Validators.maxLength(50),
         ],
       ],
       description: [
