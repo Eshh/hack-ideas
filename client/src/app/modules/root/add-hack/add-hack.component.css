@@ -9,6 +9,14 @@ textarea {
   box-sizing: border-box;
 }
 
+.error-field{
+  border:1px solid red;
+}
+
+.text-length-msg{
+  font-size: 10px;
+}
+
 /* input[type=submit] {
     width: 100%;
     background-color: #4CAF50;

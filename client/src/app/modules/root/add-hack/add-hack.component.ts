@@ -33,6 +33,8 @@ export class AddHackComponent implements OnInit {
     { name: 'Programming', value: 'progamming' },
   ];
 
+  isSubmitted: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private dataManager: DataManagerService,
@@ -42,14 +44,32 @@ export class AddHackComponent implements OnInit {
 
   ngOnInit(): void {
     this.hackDetails = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ],
+      ],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(100),
+        ],
+      ],
       tags: ['', [Validators.required]],
     });
   }
 
+  get f() {
+    return this.hackDetails.controls;
+  }
+
   onAdd() {
-    console.log(this.hackDetails.valid);
+    this.isSubmitted = true;
     if (this.hackDetails.valid) {
       let url = AppConfig.API_BASE_URL;
       let f = this.hackDetails.controls;
@@ -66,12 +86,17 @@ export class AddHackComponent implements OnInit {
       // return;
       this.dataManager.APIGenericPostMethod(url, body).subscribe((data) => {
         console.log(data);
+        this.toastService.setToastMsgFunction({
+          status: true,
+          message: 'Idea added succesfully',
+          color: '#067108a2',
+        });
         this.sendDataToParent.emit('close');
       });
     } else {
       this.toastService.setToastMsgFunction({
         status: true,
-        message: 'Please fill all mandatory fields',
+        message: 'Please fill all mandatory fields with valid values',
         color: '#e9465e',
       });
     }
