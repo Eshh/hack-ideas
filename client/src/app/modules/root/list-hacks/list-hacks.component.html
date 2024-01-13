@@ -28,10 +28,9 @@
 
                     <div class="ag-courses-item_title">
                         {{hack.title}} </div>
-                    <p class="description">{{hack.isDescriptionLong ?hack.description.substring(1,50):hack.description}}
+                    <p class="description">{{hack.isDescriptionLong ?hack.description.substring(0,50)+'...':hack.description}}
+                        <span style="text-decoration: underline; cursor: pointer;" *ngIf="hack.isDescriptionLong" (click)="selectedHack=hack;showViewMorePopup=true;">More</span>
                     </p>
-                    <p *ngIf="hack.isDescriptionLong" (click)="selectedHack=hack;showViewMorePopup=true;">See full
-                        description</p>
                     <div class="upvotes-container">
                         <div>
                             <svg title="Upvote" (click)="upvote(hack)" fill="#fff" width="50px" height="40px"
