@@ -1,19 +1,19 @@
 <form [formGroup]="hackDetails" #hackForm="ngForm" class="terms_services_pop_form">
     <label for="title">Title</label>
     <span class="text-length-msg" *ngIf="hackDetails.controls.title.value.length < 3 || hackDetails.controls.title.value.length > 20">*between
-        3-20 characters</span>
+        3-30 characters</span>
     <input [ngStyle]="{'border-color':(isSubmitted && !hackDetails.controls.title.valid ) ? 'red' : ''}" id="title"
         formControlName="title" />
     <label for="description">Description</label>
     <span class="text-length-msg"
         *ngIf="hackDetails.controls.description.value.length < 10 || hackDetails.controls.description.value.length > 100">*between
-        10-100 characters</span>
+        10-500 characters</span>
     <textarea [ngStyle]="{'border-color':(isSubmitted && !hackDetails.controls.description.valid ) ? 'red' : ''}"
         id="description" formControlName="description"></textarea>
     <label for="tags">Tags </label>
     <select id="tags" formControlName="tags"
         [ngStyle]="{'border-color':(isSubmitted && !hackDetails.controls.tags.valid ) ? 'red' : ''}">
-        <!-- <option [selected]="true" [disabled]="true" [value]="">Select</option> -->
+        <option [selected]="true" [disabled]="true" [ngValue]="''">Select</option>
         <option *ngFor="let option of tagOptions" [ngValue]="option.name">{{option.name}}</option>
     </select>
     <button (click)="onAdd()" class="add_btn">Add</button>

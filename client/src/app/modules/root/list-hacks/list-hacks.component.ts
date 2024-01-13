@@ -12,16 +12,18 @@ import { ToastMessageService } from 'src/app/services/toast-message.service';
 export class ListHacksComponent implements OnInit {
   hackList: any = [];
   filteredHackList: any = [];
+  selectedHack: any = {};
   currentTab: string | number = 'all';
   filterMode: string = 'all';
   searchValue: string = '';
   addMode: boolean = false;
   showIdleSvg: boolean = false;
+  showViewMorePopup:boolean = false;
 
   constructor(
     private dataManagerService: DataManagerService,
     private localStorage: LocalStorageService,
-    private toastService:ToastMessageService
+    private toastService: ToastMessageService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +37,12 @@ export class ListHacksComponent implements OnInit {
     this.dataManagerService.APIGenericGetMethod(url).subscribe((data) => {
       console.log(data);
       this.hackList = data;
+      this.hackList.forEach((e: any) => {
+        e['isDescriptionLong'] = false;
+        if (e.description.length > 50) {
+          e['isDescriptionLong'] = true;
+        }
+      });
       this.filteredHackList = data;
       if (data.length == 0) {
         this.showIdleSvg = true;
@@ -51,7 +59,7 @@ export class ListHacksComponent implements OnInit {
       this.currentTab = +this.localStorage.getItem('empID');
     }
     console.log(flag);
-      this.getAllHacks();
+    this.getAllHacks();
   }
 
   sortList(flag: string = '') {
@@ -59,7 +67,7 @@ export class ListHacksComponent implements OnInit {
       this.filteredHackList = this.hackList.filter((e: any) => {
         return +e.createdBy == +this.searchValue;
       });
-      if(this.filteredHackList.length == 0){
+      if (this.filteredHackList.length == 0) {
         this.toastService.setToastMsgFunction({
           status: true,
           message: `No ideas created by employee with ID:${this.searchValue}`,

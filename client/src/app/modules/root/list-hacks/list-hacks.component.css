@@ -88,16 +88,13 @@ p {
   background-color: #664c90;
   overflow: hidden;
   position: relative;
+  height: 90%;
+  word-wrap: break-word;
 }
 .ag-courses-item_link:hover,
 .ag-courses-item_link:hover .ag-courses-item_date {
   text-decoration: none;
   /* color: #fff; */
-}
-.ag-courses-item_link:hover .ag-courses-item_bg {
-  /* -webkit-transform: scale(10);
-    -ms-transform: scale(10);
-    transform: scale(10); */
 }
 
 .ag-courses-item_date-box {
@@ -112,31 +109,16 @@ p {
   color: #ccc;
 }
 .ag-courses-item_title {
-  /* min-height: 87px; */
-  /* margin: 0 0 25px; */
   margin-bottom: 20px;
   overflow: hidden;
   font-weight: bold;
   font-size: 30px;
   color: #fff;
   text-transform: capitalize;
-  /* z-index: 2; */
   position: relative;
 }
 
 .ag-courses-item_bg {
-  /* height: 128px;
-  width: 128px;
-  background-color: #f9b234; */
-  /* z-index: 1; */
-  /* position: absolute;
-  top: -75px;
-  right: -75px;
-  border-radius: 20%;
-  -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease; */
-
   height: 85px;
   width: 100%;
   background-color: #f9b234;
@@ -148,7 +130,6 @@ p {
 }
 
 .upvotes-container {
-  /* display: flex; */
   display: flex;
   flex-direction: row;
   align-items: baseline;

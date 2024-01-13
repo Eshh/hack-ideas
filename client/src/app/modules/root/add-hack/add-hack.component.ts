@@ -25,12 +25,13 @@ export class AddHackComponent implements OnInit {
   });
 
   tagOptions: any = [
-    { name: 'Select', value: '' },
-    { name: 'AI/ML', value: 'ai' },
+    { name: 'AI/ML', value: 'ai/ml' },
     { name: 'Security', value: 'security' },
     { name: 'BigData', value: 'bigdata' },
     { name: 'Cloud', value: 'cloud' },
     { name: 'Programming', value: 'progamming' },
+    { name: 'Marketing', value: 'marketinng' },
+    { name: 'Miscellaneous', value: 'miscellaneous' },
   ];
 
   isSubmitted: boolean = false;
@@ -49,7 +50,7 @@ export class AddHackComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(20),
+          Validators.maxLength(30),
         ],
       ],
       description: [
@@ -57,7 +58,7 @@ export class AddHackComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(10),
-          Validators.maxLength(100),
+          Validators.maxLength(500),
         ],
       ],
       tags: ['', [Validators.required]],

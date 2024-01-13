@@ -28,7 +28,10 @@
 
                     <div class="ag-courses-item_title">
                         {{hack.title}} </div>
-                    <p class="description">{{hack.description}}</p>
+                    <p class="description">{{hack.isDescriptionLong ?hack.description.substring(1,50):hack.description}}
+                    </p>
+                    <p *ngIf="hack.isDescriptionLong" (click)="selectedHack=hack;showViewMorePopup=true;">See full
+                        description</p>
                     <div class="upvotes-container">
                         <div>
                             <svg title="Upvote" (click)="upvote(hack)" fill="#fff" width="50px" height="40px"
@@ -215,7 +218,7 @@
     <article class="modal-container">
         <header class="modal-container-header">
             <h1 class="modal-container-title">
-                Terms and Services
+                Bring out the Innovative YOU !
             </h1>
             <button (click)="addMode = !addMode" class="icon-button close_pop">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -225,7 +228,47 @@
                 </svg>
             </button>
         </header>
-
         <app-add-hack [hackList]="hackList" (sendDataToParent)="onPopupClose($event)"></app-add-hack>
+    </article>
+</div>
+<!-- View more popup -->
+
+<div class="modal" *ngIf="showViewMorePopup">
+    <article class="modal-container">
+        <header class="modal-container-header">
+            <h1 class="modal-container-title">
+                {{selectedHack?.title}}
+            </h1>
+            <button (click)="showViewMorePopup = false" class="icon-button close_pop">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path fill="currentColor"
+                        d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                </svg>
+            </button>
+        </header>
+        <div class="ag-courses_item">
+            <a class="ag-courses-item_link">
+                <div class="ag-courses-item_bg"></div>
+                <p class="description">{{selectedHack?.description}}
+                </p>
+                <div class="upvotes-container">
+                    <div>
+                        <svg title="Upvote" (click)="upvote(selectedHack)" fill="#fff" width="50px" height="40px"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z" />
+                        </svg>
+                        <p>{{selectedHack?.upvotes.length}} upvotes</p>
+                    </div>
+                    <div class="ag-courses-item_date-box">
+                        <p>Tagged as:{{selectedHack?.tags[0]}}</p>
+                        <span class="ag-courses-item_date">
+                            created on:{{selectedHack?.createdAt | date}}
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
     </article>
 </div>
