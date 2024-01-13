@@ -83,10 +83,8 @@ export class AddHackComponent implements OnInit {
         upvotes: [],
         hackId: this.hackList.length + 1,
       };
-      console.log(body);
       // return;
       this.dataManager.APIGenericPostMethod(url, body).subscribe((data) => {
-        console.log(data);
         this.toastService.setToastMsgFunction({
           status: true,
           message: 'Idea added succesfully',

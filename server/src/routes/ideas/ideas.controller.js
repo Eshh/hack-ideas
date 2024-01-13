@@ -3,7 +3,6 @@ const { getPagination } = require("../../services/query");
 
 async function httpGetAllIdeas(req, res) {
   const { skip, limit } = getPagination(req.query);
-  console.log(req.query,'Queryyy');
   return res.status(200).json(await getAllIdeas(skip, limit, req.query.empID));
 }
 

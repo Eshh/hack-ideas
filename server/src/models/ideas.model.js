@@ -4,12 +4,10 @@ const ideasModel = require("./ideas.mongo");
 INITIAL_HACK_ID = 0;
 
 async function getAllIdeas(skip, limit, id = "") {
-  console.log(id, "heyyyyyyyy");
   let data = await ideasModel
     .find({}, { _id: 0, __v: 0 })
     .skip(skip)
     .limit(limit);
-  console.log(data);
   if (id == "all") {
     return data;
   } else {

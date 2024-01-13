@@ -26,10 +26,8 @@ export class AppRoutingModule {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    console.log('out');
     this.activatedRoute.params.subscribe((params: any) => {
       if (params['empID']) {
-        console.log('nnnn');
         this.localStorage.setItem('empID', params.empID);
         this.router.navigate([`list/hacks/${params['empID']}`]);
       }

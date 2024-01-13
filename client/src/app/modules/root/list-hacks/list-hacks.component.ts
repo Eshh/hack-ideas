@@ -35,7 +35,6 @@ export class ListHacksComponent implements OnInit {
   getAllHacks() {
     let url = AppConfig.API_BASE_URL + `?empID=${this.currentTab}`;
     this.dataManagerService.APIGenericGetMethod(url).subscribe((data) => {
-      console.log(data);
       this.hackList = data;
       this.hackList.forEach((e: any) => {
         e['isDescriptionLong'] = false;
@@ -54,11 +53,9 @@ export class ListHacksComponent implements OnInit {
 
   switchTab(flag: string) {
     this.currentTab = flag;
-    console.log(this.currentTab, 'machaaaa');
     if (flag == 'myHacks') {
       this.currentTab = +this.localStorage.getItem('empID');
     }
-    console.log(flag);
     this.getAllHacks();
   }
 
@@ -94,7 +91,6 @@ export class ListHacksComponent implements OnInit {
 
   upvote(hack: any) {
     let body: any = hack;
-    console.log(body);
     if (body.upvotes.includes(this.localStorage.getItem('empID'))) {
       // alert('Uh oh! can only upvote once');
       this.toastService.setToastMsgFunction({
