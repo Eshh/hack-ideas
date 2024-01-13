@@ -8,6 +8,7 @@ import {
 import { AppConfig } from 'src/app.config';
 import { DataManagerService } from 'src/app/services/dataManager.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 
 @Component({
@@ -40,7 +41,8 @@ export class AddHackComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dataManager: DataManagerService,
     private localStorage: LocalStorageService,
-    private toastService: ToastMessageService
+    private toastService: ToastMessageService,
+    private spinnerService:SpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +72,7 @@ export class AddHackComponent implements OnInit {
   }
 
   onAdd() {
+    this.spinnerService.showSpinnerMethod();
     this.isSubmitted = true;
     if (this.hackDetails.valid) {
       let url = AppConfig.API_BASE_URL;
@@ -85,6 +88,7 @@ export class AddHackComponent implements OnInit {
       };
       // return;
       this.dataManager.APIGenericPostMethod(url, body).subscribe((data) => {
+        this.spinnerService.hideSpinner();
         this.toastService.setToastMsgFunction({
           status: true,
           message: 'Idea added succesfully',

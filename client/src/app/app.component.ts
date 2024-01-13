@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastMessageService } from './services/toast-message.service';
+import { SpinnerService } from './services/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,14 @@ export class AppComponent {
     message: '',
     color: '',
   };
-  constructor(private toastService: ToastMessageService) {
+  showSpinner: boolean = false;
+  constructor(
+    private toastService: ToastMessageService,
+    private spinnerService: SpinnerService
+  ) {
     this.toastService.showToastMsg.subscribe((data) => (this.toastData = data));
+    this.spinnerService.showSpinner.subscribe(
+      (data) => (this.showSpinner = data)
+    );
   }
 }

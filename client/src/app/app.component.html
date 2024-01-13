@@ -3,3 +3,5 @@
 <div *ngIf="toastData.status" class="toast_msg_block" [ngStyle]="{background:toastData.color}">
     <span>{{toastData.message}}</span>
 </div>
+
+<span *ngIf="showSpinner" class="lds-hourglass"></span>
