@@ -97,6 +97,7 @@ export class AddHackComponent implements OnInit {
         this.sendDataToParent.emit('close');
       });
     } else {
+      this.spinnerService.hideSpinner();
       this.toastService.setToastMsgFunction({
         status: true,
         message: 'Please fill all mandatory fields with valid values',
