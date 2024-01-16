@@ -20,7 +20,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(): void {
-    if (!this.empID || String(this.empID).length < 3) {
+    if (
+      !this.empID ||
+      String(this.empID).length < 3 ||
+      String(this.empID).trim() == ''
+    ) {
       this.toastService.setToastMsgFunction({
         status: true,
         message: 'ID should be minimum 3 characters',
