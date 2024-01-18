@@ -5,7 +5,7 @@ const ideaSchema = new mongoose.Schema({
   description: { type: String, required: true },
   tags: { type: Array, required: true },
   hackId: { type: Number, required: true },
-  createdBy: { type: Number, required: true },
+  createdBy: { type: String, required: true },
   createdAt: { type: Number, required: true },
   upvotes: { type: Array },
 });

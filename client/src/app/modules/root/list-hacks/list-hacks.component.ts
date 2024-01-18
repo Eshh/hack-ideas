@@ -66,7 +66,7 @@ export class ListHacksComponent implements OnInit {
   sortList(flag: string = '') {
     if (flag == 'search' && this.searchValue.length > 2) {
       this.filteredHackList = this.hackList.filter((e: any) => {
-        return +e.createdBy == +this.searchValue;
+        return e.createdBy == this.searchValue;
       });
       if (this.filteredHackList.length == 0) {
         this.toastService.setToastMsgFunction({
