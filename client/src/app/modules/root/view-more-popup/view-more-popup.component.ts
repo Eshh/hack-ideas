@@ -17,6 +17,13 @@ import {
   ],
 })
 export class ViewMorePopupComponent implements OnInit {
+
+  @HostListener('document:mousedown', ['$event.target'])
+  onGlobalClick(target: any): void {
+    if (!this.ref.nativeElement.contains(target)) {
+      this.sendDataToParent.emit('close');
+    }
+  }
   @Input() selectedHack: any = {};
   @Output() sendDataToParent = new EventEmitter();
 

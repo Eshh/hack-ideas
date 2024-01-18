@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
@@ -34,6 +34,13 @@ export class LoginComponent implements OnInit {
       this.localStorage.setItem('isLoggedIn', true);
       this.localStorage.setItem('empID', this.empID);
       this.router.navigate([`list/hacks/all`]);
+    }
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  clickEvent(event: any) {
+    if (event.key == 'Enter') {
+      this.login();
     }
   }
 }

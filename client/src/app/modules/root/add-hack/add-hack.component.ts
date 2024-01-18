@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,6 +17,14 @@ import { ToastMessageService } from 'src/app/services/toast-message.service';
   styleUrls: ['./add-hack.component.css'],
 })
 export class AddHackComponent implements OnInit {
+
+  @HostListener('document:mousedown', ['$event.target'])
+  onGlobalClick(target: any): void {
+    if (!this.ref.nativeElement.contains(target)) {
+      this.sendDataToParent.emit('close');
+    }
+  }
+
   @Output() sendDataToParent = new EventEmitter();
   @Input() hackList: any = [];
   hackDetails = new FormGroup({
@@ -42,7 +50,8 @@ export class AddHackComponent implements OnInit {
     private dataManager: DataManagerService,
     private localStorage: LocalStorageService,
     private toastService: ToastMessageService,
-    private spinnerService:SpinnerService
+    private spinnerService:SpinnerService,
+    private ref:ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -81,7 +90,7 @@ export class AddHackComponent implements OnInit {
         title: f.title.value,
         description: f.description.value,
         tags: f.tags.value,
-        createdBy: this.localStorage.getItem('empID'),
+        createdBy: String(this.localStorage.getItem('empID')),
         createdAt: new Date().getTime(),
         upvotes: [],
         hackId: this.hackList.length + 1,
