@@ -86,10 +86,18 @@ export class ListHacksComponent implements OnInit {
     }
   }
 
-  onPopupClose(dataFromChild: any) {
+  onAddPopupClose(dataFromChild: any) {
     this.addMode = false;
     if (dataFromChild == 'close') {
       this.getAllHacks();
+    }
+  }
+
+  onViewMorePopupClose(data: any) {
+    if (data == 'close') {
+      this.showViewMorePopup = false;
+    } else {
+      this.upvote(data);
     }
   }
 
